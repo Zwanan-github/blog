@@ -1,0 +1,12 @@
+services:
+  blog:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./content:/app/content
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
