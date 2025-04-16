@@ -1,5 +1,6 @@
 import MDComponents from "@/components/md-components";
 import { getBlog } from "@/actions/blog/action";
+import { notFound } from "next/navigation";
 type Params = Promise<{
   name: string
 }>
@@ -9,6 +10,9 @@ export async function generateMetadata({ params }: { params: Params }) {
   const { name } = await params;
   const decodedName = decodeURIComponent(name);
   const blog = await getBlog(decodedName);
+  if (!blog) {
+    throw notFound();
+  }
   return { title: `Blogs-${blog.name}`, description: blog.name };
 }
 

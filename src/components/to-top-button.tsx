@@ -18,9 +18,10 @@ export function ToTopButton() {
             behavior: "smooth",
         });
     };
+
     
     return (
-        <Button size="icon" variant={"default"} onClick={handleClick} className="fixed right-16 bottom-20">
+        <Button size="icon" variant={"default"} onClick={handleClick} className="fixed right-8 bottom-22 md:right-16 md:bottom-20">
             <ArrowUp />
         </Button>
     )

@@ -29,7 +29,7 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased w-screen`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
                 <ThemeProvider
                     attribute="class"
@@ -37,7 +37,7 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <main className="w-4/6 mx-auto">
+                    <main className="max-w-screen-lg md:w-4/6 w-full sm:w-6/7 mx-auto">
                         <Header />
                         <div className="p-6">
                             {children}
