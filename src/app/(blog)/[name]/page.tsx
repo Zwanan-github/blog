@@ -1,6 +1,5 @@
-import { getBlog } from "@/actions/blog/action";
 import MDComponents from "@/components/md-components";
-
+import { getBlog } from "@/actions/blog/action";
 type Params = Promise<{
   name: string
 }>
@@ -18,13 +17,16 @@ export default async function Page({ params }: { params: Params }) {
   // 解码URL编码的name
   const decodedName = decodeURIComponent(name);
   // 获取博客内容
-  const blog = await fetch(`http://localhost:3000/api/blog?name=${decodedName}`);
-  const blogData = await blog.json();
+  const blog = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/blog?name=${decodedName}`, {
+    next: {
+      revalidate: 10
+    }
+  }).then(res => res.json());
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-3xl font-bold">{blogData.name === "about" ? "关于我" : blogData.name}</h1>
-      <p className="text-sm text-gray-500">{`更新时间：${blogData.date}`}</p>
-      <MDComponents content={blogData.content} />
+      <h1 className="text-3xl font-bold">{blog.name === "about" ? "关于我" : blog.name}</h1>
+      <p className="text-sm text-gray-500">{`更新时间：${blog.date}`}</p>
+      <MDComponents content={blog.content} />
     </div>
   );
 }
