@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { ToTopButton } from "@/components/to-top-button";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
@@ -39,6 +41,7 @@ export default function RootLayout({
                         <Header />
                         <div className="p-6">
                             {children}
+                            <SpeedInsights />
                         </div>
                     </main>
                     <ToTopButton />
