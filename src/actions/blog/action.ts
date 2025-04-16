@@ -9,6 +9,8 @@ export interface Blog {
     content: string;
 }
 
+const whiteList = ["about"];
+
 export async function getBlogList(): Promise<Blog[]> {
     try {
         // 获取mds文件夹下的所有文件
@@ -30,7 +32,7 @@ export async function getBlogList(): Promise<Blog[]> {
         }));
         // 按日期降序排序，去除whiteList中为前缀的内容
         blogList.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-        return blogList;
+        return blogList.filter((blog) => !whiteList.some((white) => blog.name.startsWith(white)));
     } catch (error) {
         console.error(error);
         return [];
