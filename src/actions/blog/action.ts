@@ -9,7 +9,7 @@ export interface Blog {
     content: string;
 }
 
-const whiteList = ["about"];
+const whiteList = ["about", "friend-links"];
 
 export async function getBlogList(): Promise<Blog[]> {
     try {

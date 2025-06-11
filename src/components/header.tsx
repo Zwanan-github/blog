@@ -23,6 +23,13 @@ export function Header() {
                             </Link>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
+                    <NavigationMenuItem>
+                        <NavigationMenuLink asChild>
+                            <Link href="/friend-links" passHref className="flex justify-center items-center gap-2">
+                                <span>友链</span>
+                            </Link>
+                        </NavigationMenuLink>
+                    </NavigationMenuItem>
                 </NavigationMenuList>
             </NavigationMenu>
             <ThemeModeToggle className="ml-auto" />

@@ -29,7 +29,14 @@ export default async function Page({ params }: { params: Params }) {
   }).then(res => res.json());
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-3xl font-bold">{blog.name === "about" ? "关于我" : blog.name}</h1>
+      <h1 className="text-3xl font-bold">
+        {
+          blog.name === "about" && "关于我"
+        }
+        {
+          blog.name === "friend-links" && "友链"
+        }
+      </h1>
       <p className="text-sm text-gray-500">{`更新时间：${blog.date}`}</p>
       <MDComponents content={blog.content} />
     </div>
