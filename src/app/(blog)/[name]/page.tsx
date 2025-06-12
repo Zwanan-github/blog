@@ -1,6 +1,7 @@
 import MDComponents from "@/components/md-components";
-import { getBlog } from "@/actions/blog/action";
+import { Blog, getBlog } from "@/actions/blog/action";
 import { notFound } from "next/navigation";
+import { whiteList } from "@/app/white-list";
 type Params = Promise<{
   name: string
 }>
@@ -22,20 +23,20 @@ export default async function Page({ params }: { params: Params }) {
   const decodedName = decodeURIComponent(name);
   // 获取博客内容
   // dev环境的时候不缓存
-  const blog = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/blog?name=${decodedName}`, {
+  const blog: Blog = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/blog?name=${decodedName}`, {
     next: {
       revalidate: process.env.NODE_ENV === "production" ? 10 : 0
     }
   }).then(res => res.json());
+
+  const matchingWhiteListItem = whiteList.find(item => item.name === blog.name);
+
+  const displayTitle = matchingWhiteListItem ? matchingWhiteListItem.title : blog.name;
+
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-3xl font-bold">
-        {
-          blog.name === "about" && "关于我"
-        }
-        {
-          blog.name === "friend-links" && "友链"
-        }
+        {displayTitle}
       </h1>
       <p className="text-sm text-gray-500">{`更新时间：${blog.date}`}</p>
       <MDComponents content={blog.content} />

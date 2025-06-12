@@ -1,5 +1,6 @@
 "use server"
 
+import { whiteList } from "@/app/white-list";
 import fs from "fs/promises";
 import path from "path";
 
@@ -9,7 +10,6 @@ export interface Blog {
     content: string;
 }
 
-const whiteList = ["about", "friend-links"];
 
 export async function getBlogList(): Promise<Blog[]> {
     try {
@@ -32,7 +32,7 @@ export async function getBlogList(): Promise<Blog[]> {
         }));
         // 按日期降序排序，去除whiteList中为前缀的内容
         blogList.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-        return blogList.filter((blog) => !whiteList.some((white) => blog.name.startsWith(white)));
+        return blogList.filter((blog) => !whiteList.some((white) => white.name != '' && blog.name.startsWith(white.name)));
     } catch (error) {
         console.error(error);
         return [];
