@@ -30,7 +30,7 @@ jobs:
         # 注意：敏感信息不应直接写在这里，应通过GitHub Secrets传递
         run: |
           echo "NODE_ENV=production" > .env.production
-          echo "NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }}" >> .env.production
+          echo "NEXT_PUBLIC_URL=${{ vars.NEXT_PUBLIC_URL }}" >> .env.production
           # ... 其他生产环境变量
 
       - name: Deploy to server via SCP
