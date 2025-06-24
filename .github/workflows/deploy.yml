@@ -33,7 +33,7 @@ jobs:
           # ... 其他生产环境变量
 
       - name: Deploy to server via SCP
-        uses: appleboy/scp-action@v0.1.4
+        uses: appleboy/scp-action@v4
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
@@ -47,7 +47,7 @@ jobs:
           # package.json 和 package-lock.json 用于在服务器上安装生产依赖。
 
       - name: Run deployment commands on server via SSH
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v4
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
