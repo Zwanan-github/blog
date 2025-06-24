@@ -23,7 +23,7 @@ export default async function Page({ params }: { params: Params }) {
   const decodedName = decodeURIComponent(name);
   // 获取博客内容
   // dev环境的时候不缓存
-  const blog: Blog = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/blog?name=${decodedName}`, {
+  const blog: Blog = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/blog?name=${decodedName}`, {
     next: {
       revalidate: process.env.NODE_ENV === "production" ? 10 : 0
     }
