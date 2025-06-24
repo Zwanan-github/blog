@@ -33,7 +33,7 @@ jobs:
           # ... 其他生产环境变量
 
       - name: Deploy to server via SCP
-        uses: appleboy/scp-action@master
+        uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
@@ -47,7 +47,7 @@ jobs:
           # package.json 和 package-lock.json 用于在服务器上安装生产依赖。
 
       - name: Run deployment commands on server via SSH
-        uses: appleboy/ssh-action@0.1.4
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
@@ -67,7 +67,7 @@ jobs:
             echo "Starting new PM2 process..."
             # 启动Next.js应用，使用 npm run start 命令
             # 确保你的 package.json 中有 "start": "next start"
-            pm2 start pnpm --name ${{ secrets.NEXT_PUBLIC_APP_NAME }} --  start
+            pm2 start pnpm --name ${{ secrets.NEXT_PUBLIC_APP_NAME }} -- start
 
             echo "Saving PM2 configuration..."
             pm2 save
