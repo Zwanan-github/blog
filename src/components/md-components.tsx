@@ -38,7 +38,7 @@ function CatalogDialog() {
             <DialogHeader>
                 <DialogTitle>目录</DialogTitle>
             </DialogHeader>
-            <div className="h-[calc(75vh)] overflow-x-auto">
+            <div className="h-[calc(60vh)] overflow-x-auto">
                 <MdCatalog editorId={"md-preview"} className="w-full text-sm" scrollElement={document.documentElement} />
             </div>
         </DialogContent>
