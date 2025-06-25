@@ -43,6 +43,9 @@ export async function getBlog(name: string): Promise<Blog | null> {
     try {
         const mds = await fs.readdir(path.join(process.cwd(), "/content/mds"));
         const blog = mds.find((md) => md.startsWith(`[${name}]`));
+        if (!blog) {
+            return null;
+        }
         const content = await fs.readFile(path.join(process.cwd(), "/content/mds", blog!), "utf-8");
         // 文件名以 [name]-[yyyy-mm-dd].md 命名， 解析出name和date
         // 解析两个[]的内容

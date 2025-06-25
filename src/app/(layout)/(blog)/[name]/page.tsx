@@ -29,6 +29,10 @@ export default async function Page({ params }: { params: Params }) {
     }
   }).then(res => res.json());
 
+  if (!blog) {
+    throw notFound();
+  }
+
   const matchingWhiteListItem = whiteList.find(item => item.name === blog.name);
 
   const displayTitle = matchingWhiteListItem ? matchingWhiteListItem.title : blog.name;
