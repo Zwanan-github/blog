@@ -39,11 +39,9 @@ export default function RootLayout({
                 >
                     <main className="max-w-screen-lg md:w-4/6 w-full sm:w-6/7 mx-auto">
                         <Header />
-                        <div className="p-6">
-                            {children}
-                            <SpeedInsights />
-                        </div>
                     </main>
+                    {children}
+                    <SpeedInsights />
                     <ToTopButton />
                 </ThemeProvider>
             </body>
