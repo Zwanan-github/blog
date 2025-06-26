@@ -7,8 +7,15 @@ import { Skeleton } from './ui/skeleton';
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
 import { Button } from './ui/button';
 import { Menu } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-export default function MDComponents({ content }: { content: string }) {
+type Params = {
+    content: string
+    hideCatalog?: boolean
+    className?: string
+}
+
+export default function MDComponents(params: Params) {
     const [mount, setMount] = useState(false);
     const { resolvedTheme } = useTheme()
     useEffect(() => {
@@ -20,9 +27,9 @@ export default function MDComponents({ content }: { content: string }) {
     }
 
     return (
-        mount ? <div className="w-full">
-            <MdPreview id={"md-preview"} className="markdown-body" style={style} theme={resolvedTheme == "dark" ? "dark" : "light"} value={content ?? ""} previewTheme="default" />
-            <CatalogDialog />
+        mount ? <div className={cn("w-full", params.className)}>
+            <MdPreview id={"md-preview"} className={cn("markdown-body")} style={style} theme={resolvedTheme == "dark" ? "dark" : "light"} value={params.content ?? ""} previewTheme="default" />
+            {!params.hideCatalog && <CatalogDialog />}
         </div> : <MDSkeleton />
     )
 }

@@ -1,3 +1,4 @@
+/// 导航栏
 export const whiteList = [
     {
         name: "",
@@ -10,5 +11,9 @@ export const whiteList = [
     {
         name: "friend-links",
         title: "友链"
+    },
+    {
+        name: "chat",
+        title: "Ai聊天"
     }
 ]
