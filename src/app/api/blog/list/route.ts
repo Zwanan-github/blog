@@ -1,4 +1,4 @@
-import { Blog, getBlog, getBlogList } from "@/actions/blog/action";
+import { Blog, getBlogList } from "@/actions/blog/action";
 import { NextResponse } from "next/server";
 
 export async function GET() {

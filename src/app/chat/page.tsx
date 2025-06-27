@@ -77,9 +77,9 @@ export default function Page() {
                 assistantContent += chunk;
                 setStreamingContent(prev => prev + chunk); // Accumulate streaming content
             }
-        } catch (error: any) {
+        } catch (error) {
             console.error("Error reading stream:", error);
-            setMessages(prev => [...prev, { role: "assistant", content: `Error: ${error.message || 'An unexpected error occurred.'}` }]);
+            setMessages(prev => [...prev, { role: "assistant", content: `Error: ${error || 'An unexpected error occurred.'}` }]);
             setLoading(false);
         }
     }
