@@ -1,3 +1,5 @@
+import { ToTopButton } from "@/components/to-top-button";
+
 export default function Layout({
     children,
 }: Readonly<{
@@ -8,6 +10,7 @@ export default function Layout({
             <div className="p-6">
                 {children}
             </div>
+            <ToTopButton />
         </main>
     )
 }
