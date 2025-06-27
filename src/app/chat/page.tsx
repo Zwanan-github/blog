@@ -95,13 +95,13 @@ export default function Page() {
                         {messages.map((message, index) => (
                             <div key={index}>
                                 <p className={cn("px-2 py-1 text-sm font-mono", message.role === "user" ? "ml-auto w-fit" : "mr-auto w-fit")}>{message.role}</p>
-                                <MDComponents content={message.content} key={index} className={cn("bg-white dark:bg-[#0a0a0a] rounded-xl p-2 shadow-sm", message.role === "user" ? "ml-auto w-fit w-max-[80%]" : "mr-auto w-fit w-max-[80%]")} />
+                                <MDComponents hideCatalog={true} content={message.content} key={index} className={cn("bg-white dark:bg-[#0a0a0a] rounded-xl p-2 shadow-sm", message.role === "user" ? "ml-auto w-fit w-max-[80%]" : "mr-auto w-fit w-max-[80%]")} />
                             </div>
                         ))}
                         {loading && (
                             <div>
                                 <p className={cn("px-2 py-1 text-sm font-mono", "mr-auto w-fit")}>{"assistant"}</p>
-                                <MDComponents content={streamingContent + "..."} className={cn("bg-white dark:bg-[#0a0a0a] rounded-xl p-2 shadow-sm", "mr-auto w-fit w-max-[80%]")} />
+                                <MDComponents hideCatalog={true} content={streamingContent + "..."} className={cn("bg-white dark:bg-[#0a0a0a] rounded-xl p-2 shadow-sm", "mr-auto w-fit w-max-[80%]")} />
                             </div>
                         )}
                         <div ref={scrollAreaRef} />
