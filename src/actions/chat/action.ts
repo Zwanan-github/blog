@@ -1,5 +1,5 @@
 'use server'
-import { GoogleGenAI } from '@google/genai';
+import { GoogleGenAI, setDefaultBaseUrls } from '@google/genai';
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 import { mcpToTool } from '@google/genai';
@@ -7,6 +7,7 @@ import { mcpToTool } from '@google/genai';
 const API_KEY = process.env.NEXT_GEMINI_KEY; // 从环境变量获取 Gemini API 密钥
 const MODEL_NAME = process.env.NEXT_GEMINI_MODEL; // 或其他支持工具的模型
 const MCP_SERVER_URL = process.env.NEXT_MCP_SERVER_URL;
+const GEMINI_URL = process.env.NEXT_GEMINI_URL;
 
 export type Message = {
     role: "user" | "assistant";
@@ -34,15 +35,16 @@ export async function sendMessage(messages: Message[]) {
                 },
             });
         }
+
+        setDefaultBaseUrls({
+            geminiUrl: GEMINI_URL
+        })
+
         // 使用 @google/generative-ai 初始化客户端
         const ai = new GoogleGenAI({
             apiKey: API_KEY,
             apiVersion: 'v1alpha',
         })
-
-        // setDefaultBaseUrls({
-        //     geminiUrl: "https://zwanan-gemini-play.deno.dev"
-        // })
 
         // Removed MCP client initialization
         const serverParams = new StreamableHTTPClientTransport(new URL(MCP_SERVER_URL || "http://localhost:4000/mcp"));
