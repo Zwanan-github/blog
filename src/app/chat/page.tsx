@@ -107,7 +107,7 @@ export default function Page() {
                     </div>
                     <div ref={scrollAreaRef} />
                     {messages.length == 0 && (
-                        <div className="flex flex-col items-center justify-center mt-30 h-full w-full">
+                        <div className="flex flex-col items-center justify-center h-full w-full">
                             <div className="flex flex-col items-center mb-8">
                                 <p className="text-2xl font-mono font-bold">{"chat"}</p>
                                 <p className="text-sm text-gray-500 font-mono">{"gemini + mcp server"}</p>
