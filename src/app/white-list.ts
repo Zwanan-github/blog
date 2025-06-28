@@ -14,6 +14,6 @@ export const whiteList = [
     },
     {
         name: "chat",
-        title: "Ai聊天"
+        title: "聊天"
     }
 ]
