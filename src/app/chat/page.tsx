@@ -20,7 +20,7 @@ export default function Page() {
     useEffect(() => {
         // Scroll to the bottom when new messages are added
         scrollAreaRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-    }, [messages]);
+    }, [messages, streamingContent]);
 
     async function sendMessage() {
         if (!input.trim()) return;
@@ -87,32 +87,32 @@ export default function Page() {
     return (
         <div className="h-full flex flex-col w-full">
             <div className="h-[90%] flex-grow flex flex-col w-full rounded-xl bg-gray-100 dark:bg-[#1e1e1e]">
-                <div className="py-4 px-2 sm:px-4 lg:px-4 shadow-sm rounded-xl">
-                    <p className="text-lg font-semibold">Chat + Gemini Api + MCP</p>
-                </div>
-                <ScrollArea className="flex-1 h-[80%] w-full py-2 px-4 rounded-lg">
+                <ScrollArea className="flex-1 w-full h-full py-2 px-4 rounded-lg">
                     <div className="space-y-2 w-full">
                         {messages.map((message, index) => (
-                            <div key={index}>
+                            <div className={cn("w-[80%]", message.role === "user" ? "ml-auto" : "mr-auto")} key={index}>
                                 <p className={cn("px-2 py-1 text-sm font-mono", message.role === "user" ? "ml-auto w-fit" : "mr-auto w-fit")}>{message.role}</p>
-                                <MDComponents hideCatalog={true} content={message.content} key={index} className={cn("bg-white dark:bg-[#0a0a0a] rounded-xl p-2 shadow-sm", message.role === "user" ? "ml-auto w-fit w-max-[80%]" : "mr-auto w-fit w-max-[80%]")} />
+                                <MDComponents hideCatalog={true} content={message.content} key={index} className={cn("bg-white dark:bg-[#0a0a0a] rounded-xl p-2 shadow-sm w-full", message.role === "user" ? "ml-auto w-fit" : "mr-auto")} />
                             </div>
                         ))}
                         {loading && (
-                            <div>
+                            <div className={cn("w-[80%] mr-auto")}>
                                 <p className={cn("px-2 py-1 text-sm font-mono", "mr-auto w-fit")}>{"assistant"}</p>
-                                <MDComponents hideCatalog={true} content={streamingContent + "..."} className={cn("bg-white dark:bg-[#0a0a0a] rounded-xl p-2 shadow-sm", "mr-auto w-fit w-max-[80%]")} />
+                                <MDComponents hideCatalog={true} content={streamingContent + "..."} className={cn("bg-white dark:bg-[#0a0a0a] rounded-xl p-2 shadow-sm w-full", "mr-auto")} />
                             </div>
                         )}
                         <div ref={scrollAreaRef} />
                     </div>
                     {messages.length == 0 && (
                         <div className="flex flex-col items-center justify-center mt-30 h-full w-full">
-                            <p className="text-xl font-mono">{"还没有消息"}</p>
+                            <div className="flex flex-col items-center mb-8">
+                                <p className="text-2xl font-mono font-bold">{"chat"}</p>
+                                <p className="text-sm text-gray-500 font-mono">{"gemini + mcp server"}</p>
+                            </div>
                             <p className="text-gray-500">{"开始你的对话吧"}</p>
-                            <Button size={"lg"} variant={"outline"} className="w-[240px]" onClick={() => setInput("你好")}>{"你好"}</Button>
-                            <Button size={"lg"} variant={"outline"} className="w-[240px]" onClick={() => setInput("列举可以使用的工具，以及作用")}>{"列举可以使用的工具，以及作用"}</Button>
-                            <Button size={"lg"} variant={"outline"} className="w-[240px]" onClick={() => setInput("介绍一下你自己")}>{"介绍一下你自己"}</Button>
+                            <Button size={"lg"} variant={"outline"} className="w-[240px] mt-4" onClick={() => setInput("你好")}>{"你好"}</Button>
+                            <Button size={"lg"} variant={"outline"} className="w-[240px] mt-2" onClick={() => setInput("列举可以使用的工具，以及作用")}>{"列举可以使用的工具，以及作用"}</Button>
+                            <Button size={"lg"} variant={"outline"} className="w-[240px] mt-2" onClick={() => setInput("介绍一下你自己")}>{"介绍一下你自己"}</Button>
                         </div>
 
                     )}
