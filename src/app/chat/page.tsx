@@ -90,13 +90,13 @@ export default function Page() {
                 <ScrollArea className="flex-1 w-full h-full py-2 px-4 rounded-lg">
                     <div className="space-y-2 w-full">
                         {messages.map((message, index) => (
-                            <div className={cn("w-[80%]", message.role === "user" ? "ml-auto" : "mr-auto")} key={index}>
+                            <div className={cn("sm:w-[80%] xs:w-[95%] lg:w-[75%]", message.role === "user" ? "ml-auto" : "mr-auto")} key={index}>
                                 <p className={cn("px-2 py-1 text-sm font-mono", message.role === "user" ? "ml-auto w-fit" : "mr-auto w-fit")}>{message.role}</p>
                                 <MDComponents hideCatalog={true} content={message.content} key={index} className={cn("bg-white dark:bg-[#0a0a0a] rounded-xl p-2 shadow-sm w-full", message.role === "user" ? "ml-auto w-fit" : "mr-auto")} />
                             </div>
                         ))}
                         {loading && (
-                            <div className={cn("w-[80%] mr-auto")}>
+                            <div className={cn("sm:w-[80%] xs:w-[95%] lg:w-[75%] mr-auto")}>
                                 <p className={cn("px-2 py-1 text-sm font-mono", "mr-auto w-fit")}>{"assistant"}</p>
                                 <MDComponents hideCatalog={true} content={streamingContent + "..."} className={cn("bg-white dark:bg-[#0a0a0a] rounded-xl p-2 shadow-sm w-full", "mr-auto")} />
                             </div>
