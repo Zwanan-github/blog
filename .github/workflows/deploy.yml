@@ -37,6 +37,29 @@ jobs:
           echo "NEXT_GEMINI_URL=${{ vars.NEXT_GEMINI_URL }}" >> .env.production
           # ... 其他生产环境变量
 
+      - name: Run Backup commands on server via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            source ~/.zshrc
+            
+            cd ${{ secrets.DEPLOY_PATH }}
+
+            echo "Stopping existing PM2 process..."
+            # 停止并删除旧的PM2进程，如果不存在则忽略错误
+            pm2 stop ${{ secrets.NEXT_PUBLIC_APP_NAME }} || true
+            pm2 delete ${{ secrets.NEXT_PUBLIC_APP_NAME }} || true
+
+            echo "Start backup process..."
+            rm -rf /backup
+            mv * backup/
+
+            echo "Backup complete!"
+
       - name: Deploy to server via SCP
         uses: appleboy/scp-action@master
         with:
