@@ -86,11 +86,11 @@ export default function Page() {
     return (
         <div className="h-full w-full">
             <div className="h-[90%] w-full rounded-xl bg-gray-100 dark:bg-[#1e1e1e]">
-                <div className="w-full h-full py-2 px-4 rounded-lg overflow-auto">
+                <div className="w-full h-full py-2 px-2 rounded-lg overflow-auto">
                     <div className="space-y-2 w-full">
                         {messages.map((message, index) => (
                             <div className={cn("w-full flex", message.role === "user" ? "justify-end" : "justify-start")} key={index}>
-                                <div className={cn("flex flex-col max-w-[90%] md:max-w-[80%]", message.role === "user" ? "items-end" : "items-start")}>
+                                <div className={cn("flex flex-col max-w-full sm:max-w-[90%] md:max-w-[80%]", message.role === "user" ? "items-end" : "items-start")}>
                                     <p className="px-2 py-1 text-sm font-mono w-fit">{message.role}</p>
                                     <MDComponents hideCatalog={true} content={message.content} className={cn("bg-white dark:bg-[#0a0a0a] rounded-xl p-2 shadow-sm")} />
                                 </div>
@@ -98,7 +98,7 @@ export default function Page() {
                         ))}
                         {loading && (
                             <div className={cn("w-full flex justify-start")}>
-                                <div className={cn("flex flex-col max-w-[90%] md:max-w-[80%] items-start")}>
+                                <div className={cn("flex flex-col max-w-full sm:max-w-[90%] md:max-w-[80%] items-start")}>
                                     <p className={cn("px-2 py-1 text-sm font-mono w-fit")}>{"assistant"}</p>
                                     <MDComponents hideCatalog={true} content={streamingContent + "..."} className={cn("bg-white dark:bg-[#0a0a0a] rounded-xl p-2 shadow-sm")} />
                                 </div>
