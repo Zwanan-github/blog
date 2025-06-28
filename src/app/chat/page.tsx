@@ -85,24 +85,28 @@ export default function Page() {
     }
 
     return (
-        <div className="h-full flex flex-col w-full">
-            <div className="h-[90%] flex-grow flex flex-col w-full rounded-xl bg-gray-100 dark:bg-[#1e1e1e]">
-                <ScrollArea className="flex-1 w-full h-full py-2 px-4 rounded-lg">
+        <div className="h-full w-full">
+            <div className="h-[90%] w-full rounded-xl bg-gray-100 dark:bg-[#1e1e1e]">
+                <div className="w-full h-full py-2 px-4 rounded-lg overflow-auto">
                     <div className="space-y-2 w-full">
                         {messages.map((message, index) => (
-                            <div className={cn("sm:w-[80%] xs:w-[95%] lg:w-[75%]", message.role === "user" ? "ml-auto" : "mr-auto")} key={index}>
-                                <p className={cn("px-2 py-1 text-sm font-mono", message.role === "user" ? "ml-auto w-fit" : "mr-auto w-fit")}>{message.role}</p>
-                                <MDComponents hideCatalog={true} content={message.content} key={index} className={cn("bg-white dark:bg-[#0a0a0a] rounded-xl p-2 shadow-sm w-full", message.role === "user" ? "ml-auto w-fit" : "mr-auto")} />
+                            <div className={cn("w-full flex", message.role === "user" ? "justify-end" : "justify-start")} key={index}>
+                                <div className={cn("flex flex-col max-w-[90%] md:max-w-[80%]", message.role === "user" ? "items-end" : "items-start")}>
+                                    <p className="px-2 py-1 text-sm font-mono w-fit">{message.role}</p>
+                                    <MDComponents hideCatalog={true} content={message.content} className={cn("bg-white dark:bg-[#0a0a0a] rounded-xl p-2 shadow-sm")} />
+                                </div>
                             </div>
                         ))}
                         {loading && (
-                            <div className={cn("sm:w-[80%] xs:w-[95%] lg:w-[75%] mr-auto")}>
-                                <p className={cn("px-2 py-1 text-sm font-mono", "mr-auto w-fit")}>{"assistant"}</p>
-                                <MDComponents hideCatalog={true} content={streamingContent + "..."} className={cn("bg-white dark:bg-[#0a0a0a] rounded-xl p-2 shadow-sm w-full", "mr-auto")} />
+                            <div className={cn("w-full flex justify-start")}>
+                                <div className={cn("flex flex-col max-w-[90%] md:max-w-[80%] items-start")}>
+                                    <p className={cn("px-2 py-1 text-sm font-mono w-fit")}>{"assistant"}</p>
+                                    <MDComponents hideCatalog={true} content={streamingContent + "..."} className={cn("bg-white dark:bg-[#0a0a0a] rounded-xl p-2 shadow-sm")} />
+                                </div>
                             </div>
                         )}
-                        <div ref={scrollAreaRef} />
                     </div>
+                    <div ref={scrollAreaRef} />
                     {messages.length == 0 && (
                         <div className="flex flex-col items-center justify-center mt-30 h-full w-full">
                             <div className="flex flex-col items-center mb-8">
@@ -116,7 +120,7 @@ export default function Page() {
                         </div>
 
                     )}
-                </ScrollArea>
+                </div>
             </div>
             <div className="flex items-center justify-center h-16 py-4">
                 <Input

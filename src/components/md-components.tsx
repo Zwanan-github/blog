@@ -27,10 +27,10 @@ export default function MDComponents(params: Params) {
     }
 
     return (
-        mount ? <div className={cn("w-full", params.className)}>
-            <MdPreview id={"md-preview"} className={cn("markdown-body")} style={style} theme={resolvedTheme == "dark" ? "dark" : "light"} value={params.content ?? ""} previewTheme="default" />
+        mount ? <>
+            <MdPreview id={"md-preview"} className={cn("markdown-body", "w-full", params.className)} style={style} theme={resolvedTheme == "dark" ? "dark" : "light"} value={params.content ?? ""} previewTheme="default" />
             {!params.hideCatalog && <CatalogDialog />}
-        </div> : <MDSkeleton />
+        </> : <MDSkeleton />
     )
 }
 
