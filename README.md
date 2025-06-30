@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Blog
 
-## Getting Started
+## 简介
 
-First, run the development server:
+一个基于 Next.js 的个人博客项目，不需要数据库，可以部署Vercel或者个人服务器
+
+### 环境准备
+
+在开始之前，请确保已经安装以下软件：
+
+*   [Node.js](https://nodejs.org/) 
+*   [pnpm](https://www.npmjs.com/)
+*   [Git](https://git-scm.com/)
+
+### 安装步骤
+
+1.  **克隆仓库**
+
+    ```bash
+    git clone https://github.com/Zwanan-github/blog.git
+    ```
+
+2.  **进入项目目录**
+
+    ```bash
+    cd blog
+    ```
+
+3.  **安装依赖**
+
+    ```bash
+    pnpm i
+    ```
+
+### 启动项目
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 使用方法
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+以下是一些使用示例：
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 删除 content/mds 和 public/images 中的文件
+- 在 content/mds 中创建 `[$name]-[$time].md` 格式的 Markdown 文件
+- 创建的文件保存在 public/images 中
 
-## Learn More
+## 许可证
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+本项目使用 MIT 许可证，详情请见 [LICENSE](LICENSE) 文件。
