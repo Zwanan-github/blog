@@ -32,6 +32,11 @@
     pnpm i
     ```
 
+4.  **创建 .env 文件, 并根据 .env.example 修改环境变量**
+    ```bash
+    touch .env
+    ```
+
 ### 启动项目
 
 ```bash
@@ -45,6 +50,7 @@ pnpm dev
 - 删除 content/mds 和 public/images 中的文件
 - 在 content/mds 中创建 `[$name]-[$time].md` 格式的 Markdown 文件
 - 创建的文件保存在 public/images 中
+- 创建自己的 Mcp-server 实例, [例子](https://github.com/Zwanan-github/blog-mcp-server)
 
 ## 许可证
 
