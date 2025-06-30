@@ -11,9 +11,9 @@ export async function BlogList() {
                 </span>
             </h1>
             {blogList.map((blog) => (
-                <div key={blog.name} className="py-2 border-b border-gray-200 dark:border-gray-700">
-                    <a href={`/${blog.name}`}>
-                        <h2 className="text-base hover:underline">{blog.name}</h2>
+                <div key={blog.name} className="py-1 border-b border-gray-200 dark:border-gray-700">
+                    <a href={`/${blog.name}`} className="block p-2 -mx-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800 hover:shadow-sm hover:scale-[1.01]">
+                        <h2 className="text-base font-medium hover:underline">{blog.name}</h2>
                         <p className="text-xs text-gray-500 mt-1">{blog.date}</p>
                     </a>
                 </div>
