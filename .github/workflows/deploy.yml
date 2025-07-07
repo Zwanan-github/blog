@@ -55,9 +55,9 @@ jobs:
             pm2 delete ${{ secrets.NEXT_PUBLIC_APP_NAME }} || true
 
             echo "Start backup process..."
-            rm -rf /backup
+            rm -rf backup
             mkdir backup
-            mv * backup/
+            mv cur/* backup/
 
             echo "Backup complete!"
 
@@ -69,7 +69,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22 # 默认SSH端口，如果不同请修改
           source: ".next/,content/,public/,package.json,package-lock.json,next.config.js,.env.production" # 需要传输的文件和目录
-          target: ${{ secrets.DEPLOY_PATH }} # 服务器上的目标路径
+          target: ${{ secrets.DEPLOY_PATH/cur }} # 服务器上的目标路径
           # 如果你的项目根目录还有其他需要的文件，例如 `components/` 或 `lib/`，
           # 并且这些文件在 `.next/` 之外，你需要将它们也包含在 source 中。
           # 通常，Next.js 的构建产物都在 .next/ 和 public/ 中。
@@ -85,7 +85,7 @@ jobs:
           script: |
             source ~/.zshrc
             
-            cd ${{ secrets.DEPLOY_PATH }}
+            cd ${{ secrets.DEPLOY_PATH/cur }}
 
             echo "Installing production dependencies..."
             pnpm install --production # 只安装生产依赖，节省空间和时间
