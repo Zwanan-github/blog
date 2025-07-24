@@ -1,3 +1,20 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Chat - Zwanan's Blog",
+    description: "基于 Gemini Api 和 Mcp server 搭建的聊天应用",
+    keywords: ["AI", "Chat", "聊天", "Gemini", "Mcp", "Mcp server", "Zwanan's Blog"],
+    authors: [
+        { name: "Zwanan", url: "https://blog.zwanan.top/about" },
+        { name: "Zwanan-github", url: "https://github.com/zwanan-github" }
+    ],
+    openGraph: {
+        title: "Chat - Zwanan's Blog",
+        description: "基于 Gemini Api 和 Mcp server 搭建的聊天应用",
+        images: ["https://blog.zwanan.top/favicon.ico"],
+    }
+}
+
 export default function Layout({
     children,
 }: Readonly<{

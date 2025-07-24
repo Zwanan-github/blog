@@ -17,8 +17,18 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
     title: "Zwanan's Blog",
-    description: "Zwanan's Blog",
-};
+    description: "Zwanan's Blog, 基于 Next.js 和 Tailwind CSS 构建的个人博客, 记录自己的笔记和生活. ",
+    keywords: ["Blog", "个人博客", "Note", "日记", "软件开发", "程序员", "Development", "Next.js", "Tailwind CSS", "Zwanan's Blog"],
+    authors: [
+        { name: "Zwanan", url: "https://blog.zwanan.top/about" },
+        { name: "Zwanan-github", url: "https://github.com/zwanan-github" }
+    ],
+    openGraph: {
+        title: "Zwanan's Blog",
+        description: "Zwanan's Blog, 基于 Next.js 和 Tailwind CSS 构建的个人博客, 记录自己的笔记和生活.",
+        images: ["https://blog.zwanan.top/favicon.ico"],
+    }
+}
 
 export default function RootLayout({
     children,
