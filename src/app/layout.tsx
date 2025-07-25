@@ -40,12 +40,12 @@ export default function RootLayout({
             {/* 直接配置的优先级高于 webmanifest */}
             <meta
                 name="theme-color"
-                media="(prefers-color-scheme: dark)"
+                media="(color-scheme: dark)"
                 content="#0a0a0a"
             />
             <meta
                 name="theme-color"
-                media="(prefers-color-scheme: light)"
+                media="(color-scheme: light)"
                 content="#ffffff"
             />
             <body
