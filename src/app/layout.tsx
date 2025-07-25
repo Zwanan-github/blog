@@ -37,6 +37,17 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
+            {/* 直接配置的优先级高于 webmanifest */}
+            <meta
+                name="theme-color"
+                media="(prefers-color-scheme: dark)"
+                content="#0a0a0a"
+            />
+            <meta
+                name="theme-color"
+                media="(prefers-color-scheme: light)"
+                content="#ffffff"
+            />
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
