@@ -1,8 +1,9 @@
 import MDComponents from "@/components/md-components";
-import { Blog, getBlog } from "@/actions/blog/action";
+import { getBlog, getBlogList } from "@/actions/blog/action";
 import { notFound } from "next/navigation";
 import { whiteList } from "@/app/white-list";
 import { Metadata } from "next";
+
 type Params = Promise<{
 	name: string
 }>
@@ -31,17 +32,26 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 	};
 }
 
+// isr
+export const dynamicParams = true;
+
+// revalidate
+export const revalidate = 60;
+
+// ssg
+export async function generateStaticParams() {
+	return (await getBlogList()).map((blog) => ({
+		name: blog.name,
+	}));
+}
+
 export default async function Page({ params }: { params: Params }) {
 	const { name } = await params;
 	// 解码URL编码的name
 	const decodedName = decodeURIComponent(name);
 	// 获取博客内容
 	// dev环境的时候不缓存
-	const blog: Blog = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/blog?name=${decodedName}`, {
-		next: {
-			revalidate: process.env.NODE_ENV === "production" ? 10 : 0
-		}
-	}).then(res => res.json());
+	const blog = await getBlog(decodedName);
 
 	if (!blog) {
 		throw notFound();
