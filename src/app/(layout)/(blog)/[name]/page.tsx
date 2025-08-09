@@ -1,8 +1,9 @@
-import MDComponents from "@/components/md-components";
 import { getBlog, getBlogList } from "@/actions/blog/action";
 import { notFound } from "next/navigation";
 import { whiteList } from "@/app/white-list";
 import { Metadata } from "next";
+
+const MDComponents = (await import("@/components/md-components")).default;
 
 type Params = Promise<{
 	name: string

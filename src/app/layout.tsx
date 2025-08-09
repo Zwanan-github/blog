@@ -3,7 +3,12 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+// import { SpeedInsights } from "@vercel/speed-insights/next"
+import ScrollLinked from "@/components/scroll-linked";
+
+const SpeedInsights = process.env.NEXT_DEPLOY_VERCEL === "true"
+    ? (await import("@vercel/speed-insights/next")).SpeedInsights
+    : () => null;
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -57,12 +62,18 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <main className="max-w-screen-lg md:w-4/6 w-full sm:w-6/7 mx-auto">
-                        <Header />
-                    </main>
-                    {children}
-                    <SpeedInsights />
+                    <ScrollLinked>
+                        {/* 固定在顶部 */}
+                        <main className="sticky top-0 z-1 max-w-screen-lg md:w-4/6 w-full sm:w-6/7 mx-auto bg-background/50 backdrop-blur-sm">
+                            <Header />
+                        </main>
+                        {/* 单独滚动 */}
+                        <div>
+                            {children}
+                        </div>
+                    </ScrollLinked>
                 </ThemeProvider>
+                <SpeedInsights/>
             </body>
         </html>
     );

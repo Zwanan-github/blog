@@ -29,29 +29,24 @@ export default function MDComponents(params: Params) {
     return (
         mount ? <>
             <MdPreview id={"md-preview"} className={cn("markdown-body", "w-full", params.className)} style={style} theme={resolvedTheme == "dark" ? "dark" : "light"} value={params.content ?? ""} previewTheme="default" />
-            {!params.hideCatalog && <CatalogDialog />}
+            {!params.hideCatalog && <Dialog>
+                <DialogTrigger asChild>
+                    <Button className="fixed right-8 bottom-12 md:right-16 md:bottom-10" variant="outline" size="icon">
+                        <Menu />
+                    </Button>
+                </DialogTrigger>
+                <DialogContent aria-describedby='catalog-description'>
+                    <DialogHeader>
+                        <DialogTitle>目录</DialogTitle>
+                    </DialogHeader>
+                    <div className="h-[calc(60vh)] overflow-x-auto">
+                        <MdCatalog scrollElementOffsetTop={68} offsetTop={70} editorId={"md-preview"} className="w-full text-sm" scrollElement={document.documentElement} />
+                    </div>
+                </DialogContent>
+            </Dialog>}
         </> : <MDSkeleton />
     )
 }
-
-function CatalogDialog() {
-    return <Dialog>
-        <DialogTrigger asChild>
-            <Button className="fixed right-8 bottom-12 md:right-16 md:bottom-10" variant="outline" size="icon"> 
-                <Menu />
-            </Button>
-        </DialogTrigger>
-        <DialogContent>
-            <DialogHeader>
-                <DialogTitle>目录</DialogTitle>
-            </DialogHeader>
-            <div className="h-[calc(60vh)] overflow-x-auto">
-                <MdCatalog editorId={"md-preview"} className="w-full text-sm" scrollElement={document.documentElement} />
-            </div>
-        </DialogContent>
-    </Dialog>
-}
-
 function MDSkeleton() {
     return <div className="w-full h-screen rounded-lg flex flex-col gap-4">
         <Skeleton className="w-full h-20" />
