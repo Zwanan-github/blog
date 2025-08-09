@@ -4,13 +4,12 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 // import { SpeedInsights } from "@vercel/speed-insights/next"
-import ScrollLinked from "@/components/scroll-linked";
-import Background from "@/components/background";
-import { ToTopButton } from "@/components/to-top-button";
-
 const SpeedInsights = process.env.NEXT_DEPLOY_VERCEL === "true"
     ? (await import("@vercel/speed-insights/next")).SpeedInsights
     : () => null;
+import Background from "@/components/background";
+import { ToTopButton } from "@/components/to-top-button";
+
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -64,20 +63,17 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <ScrollLinked>
-
-                        <div className="w-full h-full min-h-screen bg-background/40 backdrop-blur-sm">
-                            {/* 固定在顶部 */}
-                            <main className="sticky top-0 z-2 w-full backdrop-blur-sm">
-                                <Header />
-                            </main>
-                            {/* 单独滚动 */}
-                            <div id="main-content" className="z-1 w-full">
-                                {children}
-                            </div>
-
+                    <div className="w-full h-full min-h-screen bg-background/40 backdrop-blur-sm">
+                        {/* 固定在顶部 */}
+                        <main className="sticky top-0 z-2 w-full backdrop-blur-sm">
+                            <Header />
+                        </main>
+                        {/* 单独滚动 */}
+                        <div id="main-content" className="z-1 w-full">
+                            {children}
                         </div>
-                    </ScrollLinked>
+
+                    </div>
                     <ToTopButton />
                     <Background />
                 </ThemeProvider>
