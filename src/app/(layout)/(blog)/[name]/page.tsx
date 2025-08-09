@@ -68,7 +68,7 @@ export default async function Page({ params }: { params: Params }) {
 				{displayTitle}
 			</h1>
 			<p className="text-sm text-gray-500">{`更新时间：${blog.date}`}</p>
-			<MDComponents content={blog.content} />
+			<MDComponents transparent={true} content={blog.content} />
 		</div>
 	);
 }

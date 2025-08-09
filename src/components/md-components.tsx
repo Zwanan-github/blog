@@ -8,11 +8,13 @@ import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from 
 import { Button } from './ui/button';
 import { Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { createPortal } from 'react-dom';
 
 type Params = {
     content: string
     hideCatalog?: boolean
     className?: string
+    transparent?: boolean
 }
 
 export default function MDComponents(params: Params) {
@@ -23,16 +25,34 @@ export default function MDComponents(params: Params) {
     }, []);
     // 设置md-editor-rt的样式
     const style = {
-        backgroundColor: resolvedTheme == "dark" ? "#0a0a0a" : "#ffffff"
+        // 设置透明
+        background: ` ${params.transparent && 'transparent'}`,
+        backgroundColor: params.transparent ? 'transparent' : (resolvedTheme == "dark" ? "#0a0a0a" : "#ffffff")
     }
 
     return (
         mount ? <>
             <MdPreview id={"md-preview"} className={cn("markdown-body", "w-full", params.className)} style={style} theme={resolvedTheme == "dark" ? "dark" : "light"} value={params.content ?? ""} previewTheme="default" />
-            {!params.hideCatalog && <Dialog>
+            {!params.hideCatalog && <MenuButton/>}
+        </> : <MDSkeleton />
+    )
+}
+
+export function MenuButton() {
+    // 使用 Portal 将按钮渲染到 body 中，避免父组件影响
+    if (typeof document === 'undefined') {
+        return null;
+    }
+    return createPortal(
+            <Dialog>
                 <DialogTrigger asChild>
-                    <Button className="fixed right-8 bottom-12 md:right-16 md:bottom-10" variant="outline" size="icon">
-                        <Menu />
+                    <Button
+                        className="fixed bottom-4 right-4 z-[9999] shadow-lg hover:shadow-xl transition-all duration-300"
+                        size="icon"
+                        variant={"outline"}
+                        aria-label="目录"
+                    >
+                        <Menu className="h-4 w-4" />
                     </Button>
                 </DialogTrigger>
                 <DialogContent aria-describedby='catalog-description'>
@@ -43,10 +63,11 @@ export default function MDComponents(params: Params) {
                         <MdCatalog scrollElementOffsetTop={68} offsetTop={70} editorId={"md-preview"} className="w-full text-sm" scrollElement={document.documentElement} />
                     </div>
                 </DialogContent>
-            </Dialog>}
-        </> : <MDSkeleton />
-    )
+            </Dialog>,
+            document.body
+        );
 }
+
 function MDSkeleton() {
     return <div className="w-full h-screen rounded-lg flex flex-col gap-4">
         <Skeleton className="w-full h-20" />
