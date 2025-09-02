@@ -1,8 +1,7 @@
 > bug背景： 使用 mybatis-plus 保存 Json 类型的数据，开发环境正常，测试环境报错
+> 错误信息：
+> org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'AxxxServiceImpl': Unsatisfied dependency expressed through field 'BxxxMapper'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'BxxxMapper' defined in URL [xxxxxxx]: Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: com/fasterxml/jackson/core/JacksonException
 
-```shell
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'AxxxServiceImpl': Unsatisfied dependency expressed through field 'BxxxMapper'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'BxxxMapper' defined in URL [xxxxxxx]: Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: com/fasterxml/jackson/core/JacksonException
-```
 ### 问题所在
 
 #### 查看 `maven` 中所有的 `jackson` 依赖包
