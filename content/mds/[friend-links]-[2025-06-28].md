@@ -7,4 +7,4 @@
 !!!
 
 - [秋秋的点心铺](https://www.qiuyingtyan.top/)
-- [blyrin|布铃酱的点心铺](https://flapypan.cn/)
+- [blyrin|布铃酱的点心铺](https://blyrin.com/)
