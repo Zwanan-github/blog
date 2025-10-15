@@ -1,6 +1,5 @@
 import { getBlogList } from "@/actions/blog/action";
 import { Skeleton } from "@/components/ui/skeleton";
-import { TransitionItem } from "./transition/blog-item-transition/transition";
 import Link from "next/link";
 export async function BlogList() {
     const blogList = await getBlogList();
