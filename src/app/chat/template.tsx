@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React from "react";
-import { motion } from "motion/react"
+import React from 'react';
+import { motion } from 'motion/react';
 
 export default function Template({ children }: { children: React.ReactNode }) {
   const variants = {
@@ -11,9 +11,9 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   return (
     <motion.main
-      initial="hidden"
-      className="w-full h-full"
-      animate="enter"
+      initial='hidden'
+      className='w-full h-full'
+      animate='enter'
       variants={variants}
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >

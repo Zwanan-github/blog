@@ -3,6 +3,7 @@
 vercel 限制免费用户的项目的 sse 连接时长，国内访问速度慢。但是服务器内存小，build next项目会卡死，于是想出了使用github action来构建，然后 ssh 推到服务器上去安装和运行
 
 - 给 `deploy.yml` 增加了备份的功能
+
 !!!
 
 ### 环境变量使用
@@ -71,7 +72,7 @@ jobs:
           port: 22
           script: |
             source ~/.zshrc
-            
+
             cd ${{ secrets.DEPLOY_PATH }}
 
             echo "Stopping existing PM2 process..."
@@ -93,7 +94,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22 # 默认SSH端口，如果不同请修改
-          source: ".next/,content/,public/,package.json,package-lock.json,next.config.js,.env.production" # 需要传输的文件和目录
+          source: '.next/,content/,public/,package.json,package-lock.json,next.config.js,.env.production' # 需要传输的文件和目录
           target: ${{ secrets.DEPLOY_PATH }}/cur # 服务器上的目标路径
           # 如果你的项目根目录还有其他需要的文件，例如 `components/` 或 `lib/`，
           # 并且这些文件在 `.next/` 之外，你需要将它们也包含在 source 中。
@@ -109,7 +110,7 @@ jobs:
           port: 22
           script: |
             source ~/.zshrc
-            
+
             cd ${{ secrets.DEPLOY_PATH }}/cur
 
             echo "Installing production dependencies..."
@@ -140,4 +141,3 @@ jobs:
 #### 点击查看运行日志
 
 ![/public/images/2025-6-25-0004.png](/public/images/2025-6-25-0004.png)
-

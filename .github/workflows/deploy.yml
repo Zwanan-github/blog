@@ -47,7 +47,7 @@ jobs:
           port: 22
           script: |
             source ~/.zshrc
-            
+
             cd ${{ secrets.DEPLOY_PATH }}
 
             echo "Stopping existing PM2 process..."
@@ -69,7 +69,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22 # 默认SSH端口，如果不同请修改
-          source: ".next/,content/,public/,package.json,package-lock.json,next.config.js,.env.production" # 需要传输的文件和目录
+          source: '.next/,content/,public/,package.json,package-lock.json,next.config.js,.env.production' # 需要传输的文件和目录
           target: ${{ secrets.DEPLOY_PATH }}/cur # 服务器上的目标路径
           # 如果你的项目根目录还有其他需要的文件，例如 `components/` 或 `lib/`，
           # 并且这些文件在 `.next/` 之外，你需要将它们也包含在 source 中。
@@ -85,7 +85,7 @@ jobs:
           port: 22
           script: |
             source ~/.zshrc
-            
+
             cd ${{ secrets.DEPLOY_PATH }}/cur
 
             echo "Installing production dependencies..."
