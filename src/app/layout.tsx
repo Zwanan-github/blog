@@ -78,7 +78,7 @@ export default function RootLayout({
         >
           <div className='w-full h-full min-h-screen bg-background/40 backdrop-blur-sm'>
             {/* 固定在顶部 */}
-            <main className='sticky top-0 z-99999 w-full backdrop-blur-sm'>
+            <main className='sticky top-0 z-99999 w-full bg-background/30 backdrop-blur-sm'>
               <Header />
             </main>
             {/* 单独滚动 */}
