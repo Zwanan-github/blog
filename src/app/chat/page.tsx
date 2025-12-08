@@ -47,7 +47,7 @@ export default function Page() {
         setMessages(prev => [
           ...prev,
           {
-            role: 'assistant',
+            role: 'model',
             content: `Error: ${errorData.error || 'Failed to send message.'}`,
           },
         ]);
@@ -63,7 +63,7 @@ export default function Page() {
         console.error('Response body reader is null');
         setMessages(prev => [
           ...prev,
-          { role: 'assistant', content: 'Error: Failed to receive response.' },
+          { role: 'model', content: 'Error: Failed to receive response.' },
         ]);
         setLoading(false);
         return;
@@ -76,7 +76,7 @@ export default function Page() {
           console.log('Stream completed!');
           setMessages(prev => [
             ...prev,
-            { role: 'assistant', content: assistantContent },
+            { role: 'model', content: assistantContent },
           ]);
           setLoading(false);
           setStreamingContent(''); // Clear streaming content after completion
@@ -92,7 +92,7 @@ export default function Page() {
       setMessages(prev => [
         ...prev,
         {
-          role: 'assistant',
+          role: 'model',
           content: `Error: ${error || 'An unexpected error occurred.'}`,
         },
       ]);
@@ -138,7 +138,7 @@ export default function Page() {
                   )}
                 >
                   <p className={cn('px-2 py-1 text-sm font-mono w-fit')}>
-                    {'assistant'}
+                    {'model'}
                   </p>
                   <MDComponents
                     hideCatalog={true}

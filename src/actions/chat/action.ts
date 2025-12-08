@@ -10,7 +10,7 @@ const MCP_SERVER_URL = process.env.NEXT_MCP_SERVER_URL;
 const GEMINI_URL = process.env.NEXT_GEMINI_URL;
 
 export type Message = {
-  role: 'user' | 'assistant';
+  role: 'user' | 'model';
   content: string;
 };
 
