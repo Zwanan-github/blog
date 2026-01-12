@@ -8,7 +8,6 @@ const SpeedInsights =
   process.env.NEXT_DEPLOY_VERCEL === 'true'
     ? (await import('@vercel/speed-insights/next')).SpeedInsights
     : () => null;
-import Background from '@/components/background';
 import { ToTopButton } from '@/components/to-top-button';
 
 const geistSans = Geist({
@@ -78,7 +77,7 @@ export default function RootLayout({
         >
           <div className='w-full h-full min-h-screen bg-background/40 backdrop-blur-sm'>
             {/* 固定在顶部 */}
-            <main className='sticky top-0 z-99999 w-full bg-background/30 backdrop-blur-sm'>
+            <main className='sticky top-0 z-99999 w-full bg-background'>
               <Header />
             </main>
             {/* 单独滚动 */}
@@ -87,7 +86,6 @@ export default function RootLayout({
             </div>
           </div>
           <ToTopButton />
-          <Background />
         </ThemeProvider>
         <SpeedInsights />
       </body>
