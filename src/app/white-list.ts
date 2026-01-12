@@ -13,10 +13,6 @@ export const whiteList = [
     title: '友链',
   },
   {
-    name: 'chat',
-    title: '聊天',
-  },
-  {
     name: 'todo',
     title: '待做',
   },
