@@ -1,19 +1,19 @@
 /// 导航栏
 export const whiteList = [
   {
-    name: '',
-    title: '首页',
+    name: 'blog',
+    title: '博客',
   },
   {
-    name: 'about',
+    name: 'blog/about',
     title: '关于',
   },
   {
-    name: 'friend-links',
+    name: 'blog/friend-links',
     title: '友链',
   },
   {
-    name: 'todo',
+    name: 'blog/todo',
     title: '待做',
   },
 ];

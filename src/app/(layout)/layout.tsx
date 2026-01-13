@@ -1,3 +1,5 @@
+import { Header } from '@/components/header';
+
 export default function Layout({
   children,
 }: Readonly<{
@@ -5,8 +7,9 @@ export default function Layout({
 }>) {
   return (
     <>
-      <main className='max-w-screen-lg md:w-4/6 w-full sm:w-6/7 mx-auto'>
-        <div className='p-6'>{children}</div>
+      <Header />
+      <main className='flex-1 max-w-screen-lg md:w-4/6 w-full sm:w-6/7 mx-auto px-6 py-8 md:py-12'>
+        <div className='animate-slide-up'>{children}</div>
       </main>
     </>
   );

@@ -40,12 +40,15 @@ const eslintConfig = [
       // 强制在数组字面量中使用空格
       'array-bracket-spacing': ['error', 'never'],
       // 强制在 JSX 属性中使用空格
-      'react/jsx-tag-spacing': ['error', {
-        'closingSlash': 'never',
-        'beforeSelfClosing': 'always',
-        'afterOpening': 'never',
-        'beforeClosing': 'never',
-      }],
+      'react/jsx-tag-spacing': [
+        'error',
+        {
+          closingSlash: 'never',
+          beforeSelfClosing: 'always',
+          afterOpening: 'never',
+          beforeClosing: 'never',
+        },
+      ],
       // 禁止未使用的变量
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': [

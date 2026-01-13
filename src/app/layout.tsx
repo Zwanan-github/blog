@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
-import { Header } from '@/components/header';
 // import { SpeedInsights } from "@vercel/speed-insights/next"
 const SpeedInsights =
   process.env.NEXT_DEPLOY_VERCEL === 'true'
@@ -54,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang='zh-CN' suppressHydrationWarning>
       {/* 直接配置的优先级高于 webmanifest */}
       <meta
         name='theme-color'
@@ -67,7 +66,7 @@ export default function RootLayout({
         content='#ffffff'
       />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
       >
         <ThemeProvider
           attribute='class'
@@ -75,17 +74,20 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className='w-full h-full min-h-screen bg-background/40 backdrop-blur-sm'>
-            {/* 固定在顶部 */}
-            <main className='sticky top-0 z-99999 w-full bg-background'>
-              <Header />
-            </main>
-            {/* 单独滚动 */}
-            <div id='main-content' className='z-1 w-full'>
-              {children}
+          <div className='relative min-h-screen w-full bg-background'>
+            {/* Background gradient */}
+            <div className='fixed inset-0 bg-gradient-to-br from-background via-background to-accent/3 -z-10' />
+            <div className='fixed inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent -z-10' />
+
+            <div className='relative min-h-screen flex flex-col'>
+              {/* 主内容区域 */}
+              <main id='main-content' className='flex-1 w-full'>
+                {children}
+              </main>
             </div>
+
+            <ToTopButton />
           </div>
-          <ToTopButton />
         </ThemeProvider>
         <SpeedInsights />
       </body>

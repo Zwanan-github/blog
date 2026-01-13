@@ -68,10 +68,36 @@ export default async function Page({ params }: { params: Params }) {
     : blog.name;
 
   return (
-    <div className='flex flex-col gap-4'>
-      <h1 className='text-3xl font-bold'>{displayTitle}</h1>
-      <p className='text-sm text-gray-500'>{`更新时间：${blog.date}`}</p>
-      <MDComponents transparent={true} content={blog.content} />
-    </div>
+    <article className='animate-slide-up'>
+      {/* Article Header */}
+      <header className='mb-8 pb-8 border-b border-border/50'>
+        <h1 className='text-4xl md:text-5xl font-bold tracking-tight mb-4'>
+          {displayTitle}
+        </h1>
+        <div className='flex items-center gap-4 text-sm text-muted-foreground'>
+          <time dateTime={blog.date} className='flex items-center gap-1'>
+            <svg
+              className='w-4 h-4'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'
+              />
+            </svg>
+            更新时间：{blog.date}
+          </time>
+        </div>
+      </header>
+
+      {/* Article Content */}
+      <div className='prose prose-slate dark:prose-invert max-w-none'>
+        <MDComponents transparent={true} content={blog.content} />
+      </div>
+    </article>
   );
 }
