@@ -9,23 +9,8 @@ import {
 import Link from 'next/link';
 import { ThemeModeToggle } from './theme-mode-toggle';
 import { whiteList } from '@/app/white-list';
-
-// 可以在这里替换成任何你想要的图标
-const HomeIcon = () => (
-  <svg
-    className='h-5 w-5 text-primary'
-    fill='none'
-    viewBox='0 0 24 24'
-    stroke='currentColor'
-  >
-    <path
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      strokeWidth={2}
-      d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'
-    />
-  </svg>
-);
+import Logo from '@/app/logo-header.png';
+import Image from 'next/image';
 
 export function Header() {
   return (
@@ -40,7 +25,7 @@ export function Header() {
                   href='/'
                   className='flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-accent transition-colors group'
                 >
-                  <HomeIcon />
+                  <Image className={'w-30'} src={Logo} alt={'Zwanan'} />
                 </Link>
               </NavigationMenuLink>
             </NavigationMenuItem>

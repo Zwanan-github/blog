@@ -1,12 +1,14 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import Logo from '@/app/logo.png';
 
 export default function HomePage() {
   return (
     <div className='min-h-screen flex items-center justify-center px-4 sm:px-6'>
       <div className='max-w-2xl w-full text-center space-y-6 sm:space-y-8'>
-        <h1 className='text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight'>
-          {'Zwanan\'s Blog'}
-        </h1>
+        <p className='text-sm sm:text-base text-muted-foreground'>
+          <Image className={'w-[60%] mx-auto'} src={Logo} alt={'Zwanan'} />
+        </p>
         <p className='text-sm sm:text-base text-muted-foreground'>记录与分享</p>
         <div className='grid grid-cols-2 gap-3 sm:flex sm:flex-row sm:justify-center sm:gap-3 max-w-xs sm:max-w-none mx-auto w-full sm:w-auto'>
           <Link
