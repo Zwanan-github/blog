@@ -8,3 +8,4 @@
 
 - [秋秋的点心铺](https://www.qiuyingtyan.top/)
 - [blyrin|布铃酱的点心铺](https://blyrin.cn/)
+- [flingyp](https://me.flingyp.online/)
